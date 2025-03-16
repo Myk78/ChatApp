@@ -7,8 +7,9 @@ const genrateTokenAndCookie = (userid, res) => {
 
   res.cookie("jwt", token, {
     maxAge: 7 * 24 * 60 * 60 * 1000, // here the expire write in this form totalday * 24h * 1h * 60min * 1milisec
-    httponly: true, // to pervet the xxs attack
-    sameSite: "strict",
+    HttpOnly: true, // to pervet the xxs attack
+    sameSite: "strict", // to pervet the csrf attack
+    secure: process.env.NODE_ENV !== "development",
   });
 };
 export default genrateTokenAndCookie;
